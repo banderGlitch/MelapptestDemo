@@ -1,0 +1,47 @@
+.container-wrapper {
+    min-height: 100vh;
+    background-color: #f9fafb;
+    padding: 2rem 1rem;
+  }
+  
+  .container-content {
+    max-width: 48rem; /* 768px */
+    margin: 0 auto;
+    width: 100%;
+  }
+  
+  /* Media Queries */
+  @media (min-width: 640px) {
+    .container-wrapper {
+      padding: 2rem 1.5rem;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .container-wrapper {
+      padding: 2rem;
+    }
+  }
+  
+  /* Dark Mode Support (Optional) */
+  @media (prefers-color-scheme: dark) {
+    .container-wrapper {
+      background-color: #1f2937;
+    }
+  }
+  
+  /* Animation for content (Optional) */
+  .container-content {
+    animation: fadeIn 0.3s ease-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }

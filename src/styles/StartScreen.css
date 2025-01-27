@@ -1,0 +1,214 @@
+.start-screen {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background-color: #f3f4f6;
+  }
+  
+  .welcome-card {
+    background-color: white;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+    animation: fadeIn 0.5s ease-out;
+  }
+  
+  .welcome-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #1f2937;
+    margin-bottom: 2rem;
+    line-height: 1.2;
+  }
+  
+  .info-section {
+    margin-bottom: 2rem;
+  }
+  
+  .info-text {
+    font-size: 1.25rem;
+    color: #4b5563;
+    margin-bottom: 1.5rem;
+  }
+  
+  .levels-info {
+    background-color: #f9fafb;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .level-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  
+  .level-item:last-child {
+    border-bottom: none;
+  }
+  
+  .level-name {
+    font-weight: 600;
+    color: #1f2937;
+  }
+  
+  .level-points {
+    color: #4b5563;
+  }
+  
+  .rules-section {
+    text-align: left;
+    margin-top: 2rem;
+  }
+  
+  .rules-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 1rem;
+  }
+  
+  .rules-list {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+    color: #4b5563;
+  }
+  
+  .rules-list li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .start-button {
+    background-color: #2563eb;
+    color: white;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .start-button:hover {
+    background-color: #1d4ed8;
+  }
+  
+  /* Animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Media Queries */
+  @media (max-width: 640px) {
+    .welcome-card {
+      padding: 1.5rem;
+    }
+  
+    .welcome-title {
+      font-size: 2rem;
+    }
+  
+    .info-text {
+      font-size: 1.125rem;
+    }
+  
+    .levels-info {
+      padding: 1rem;
+    }
+  
+    .level-item {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.25rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .welcome-card {
+      padding: 1.25rem;
+    }
+  
+    .welcome-title {
+      font-size: 1.75rem;
+      margin-bottom: 1.5rem;
+    }
+  
+    .info-text {
+      font-size: 1rem;
+    }
+  
+    .start-button {
+      padding: 0.875rem 1.5rem;
+      font-size: 1rem;
+    }
+  }
+  
+  /* Hover Effects */
+  .level-item:hover {
+    background-color: #f3f4f6;
+    border-radius: 0.5rem;
+  }
+  
+  /* Focus States for Accessibility */
+  .start-button:focus {
+    outline: 2px solid #2563eb;
+    outline-offset: 2px;
+  }
+  
+  /* Dark Mode Support (Optional) */
+  @media (prefers-color-scheme: dark) {
+    .start-screen {
+      background-color: #1f2937;
+    }
+  
+    .welcome-card {
+      background-color: #374151;
+    }
+  
+    .welcome-title {
+      color: #f9fafb;
+    }
+  
+    .info-text,
+    .level-points {
+      color: #d1d5db;
+    }
+  
+    .levels-info {
+      background-color: #1f2937;
+    }
+  
+    .level-name {
+      color: #f9fafb;
+    }
+  
+    .level-item {
+      border-bottom-color: #4b5563;
+    }
+  
+    .rules-title {
+      color: #f9fafb;
+    }
+  
+    .rules-list {
+      color: #d1d5db;
+    }
+  }

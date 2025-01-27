@@ -18,7 +18,13 @@ const initialState = {
     },
     correctAnswers: 0,
     questions: questions,
-    failedLevel: null
+    failedLevel: null,
+    answeredQuestions: {},
+    maxIndexReached: {
+        easy: -1,
+        medium: -1,
+        hard: -1
+    }
 };
 
 function quizReducer(state, action) {
@@ -30,28 +36,53 @@ function quizReducer(state, action) {
                 questions: action.payload.shuffledQuestions
             };
 
-        case 'ANSWER_QUESTION': {
-            const isCorrect = action.payload.isCorrect;
-            const points = {
-                easy: 10,
-                medium: 20,
-                hard: 30
-            }[state.currentLevel];
-
-            const newScore = isCorrect ? state.score + points : state.score;
-            const newLevelScores = {
-                ...state.levelScores,
-                [state.currentLevel]: state.levelScores[state.currentLevel] + (isCorrect ? points : 0)
-            };
-
-            return {
-                ...state,
-                score: newScore,
-                levelScores: newLevelScores,
-                correctAnswers: isCorrect ? state.correctAnswers + 1 : state.correctAnswers
-            };
-        }
-
+            case 'ANSWER_QUESTION': {
+                const { isCorrect, questionKey, answer } = action.payload;
+                const [level, indexStr] = questionKey.split('-');
+                const currentIndex = parseInt(indexStr);
+                
+                // Determine if this is a new attempt (not going backwards)
+                const isNewAttempt = currentIndex > state.maxIndexReached[level];
+                
+                const points = {
+                  easy: 10,
+                  medium: 20,
+                  hard: 30
+                }[level];
+          
+                // Only update score and correctAnswers for new attempts
+                if (isNewAttempt) {
+                  return {
+                    ...state,
+                    score: isCorrect ? state.score + points : state.score,
+                    levelScores: {
+                      ...state.levelScores,
+                      [level]: isCorrect 
+                        ? state.levelScores[level] + points 
+                        : state.levelScores[level]
+                    },
+                    correctAnswers: isCorrect ? state.correctAnswers + 1 : state.correctAnswers,
+                    answeredQuestions: {
+                      ...state.answeredQuestions,
+                      [questionKey]: { answer, isCorrect }
+                    },
+                    maxIndexReached: {
+                      ...state.maxIndexReached,
+                      [level]: Math.max(state.maxIndexReached[level], currentIndex)
+                    }
+                  };
+                }
+          
+                // Just update the answer without changing score for previous questions
+                return {
+                  ...state,
+                  answeredQuestions: {
+                    ...state.answeredQuestions,
+                    [questionKey]: { answer, isCorrect }
+                  }
+                };
+              }
+          
         case 'CHECK_LEVEL_COMPLETION': {
             // Check if we've completed all questions for this level
             if (state.currentQuestionIndex + 1 >= QUESTIONS_PER_LEVEL) {
@@ -100,6 +131,17 @@ function quizReducer(state, action) {
                     [state.currentLevel]: 0
                 }
             };
+        case 'PREVIOUS_QUESTION':
+            return {
+                ...state,
+                currentQuestionIndex: Math.max(0, state.currentQuestionIndex - 1)
+            };
+
+        case 'NEXT_QUESTION':
+            return {
+                ...state,
+                currentQuestionIndex: Math.min(2, state.currentQuestionIndex + 1)
+            };
 
         default:
             return state;
@@ -131,4 +173,4 @@ export function useQuiz() {
 }
 
 // Make sure to export everything needed
-export { QuizContext ,  QUESTIONS_PER_LEVEL, REQUIRED_TO_PASS};  // if needed elsewhere
+export { QuizContext, QUESTIONS_PER_LEVEL, REQUIRED_TO_PASS };  // if needed elsewhere

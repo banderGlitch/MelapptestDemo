@@ -1,0 +1,185 @@
+.results-page {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    text-align: center;
+  }
+  
+  .score-card {
+    background-color: white;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .completion-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #1f2937;
+    margin-bottom: 1rem;
+  }
+  
+  .final-score {
+    font-size: 3.75rem;
+    font-weight: bold;
+    color: #2563eb;
+    margin-bottom: 1rem;
+  }
+  
+  .score-label {
+    font-size: 1.25rem;
+    color: #6b7280;
+    margin-bottom: 1rem;
+  }
+  
+  .performance-message {
+    font-size: 1.125rem;
+    color: #4b5563;
+    font-weight: 500;
+  }
+  
+  .breakdown-card {
+    background-color: white;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .breakdown-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 1rem;
+  }
+  
+  .breakdown-details {
+    text-align: left;
+  }
+  
+  .level-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+  }
+  
+  .level-label {
+    color: #6b7280;
+  }
+  
+  .level-points {
+    font-weight: 500;
+  }
+  
+  .highscore-card {
+    background-color: white;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .highscore-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 0.5rem;
+  }
+  
+  .highscore-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #059669;
+  }
+  
+  .action-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .play-again-button,
+  .reset-button {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .play-again-button {
+    background-color: #2563eb;
+    color: white;
+  }
+  
+  .play-again-button:hover {
+    background-color: #1d4ed8;
+  }
+  
+  .reset-button {
+    background-color: #6b7280;
+    color: white;
+  }
+  
+  .reset-button:hover {
+    background-color: #4b5563;
+  }
+  
+  .share-section {
+    margin-top: 1.5rem;
+  }
+  
+  .share-button {
+    background-color: #059669;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .share-button:hover {
+    background-color: #047857;
+  }
+  
+  /* Media Queries */
+  @media (max-width: 640px) {
+    .action-buttons {
+      flex-direction: column;
+    }
+  
+    .completion-title {
+      font-size: 2rem;
+    }
+  
+    .final-score {
+      font-size: 3rem;
+    }
+  
+    .score-card,
+    .breakdown-card,
+    .highscore-card {
+      padding: 1.25rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .results-page {
+      padding: 1rem;
+    }
+  
+    .completion-title {
+      font-size: 1.75rem;
+    }
+  
+    .final-score {
+      font-size: 2.5rem;
+    }
+  
+    .performance-message {
+      font-size: 1rem;
+    }
+  }

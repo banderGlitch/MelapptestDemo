@@ -1,14 +1,15 @@
+import '../../styles/QuestionCard.css';
 
 const QuestionCard = ({ question, onAnswer, userAnswer, showFeedback }) => {
   const renderAnswerOptions = () => {
     switch (question.type) {
       case 'multiple-choice':
         return (
-          <div className="space-y-3">
+          <div className="options-grid">
             {question.options.map((option) => (
               <label
                 key={option}
-                className="flex items-center p-3 border rounded-lg hover:bg-gray-50 cursor-pointer"
+                className="option-label"
               >
                 <input
                   type="radio"
@@ -16,9 +17,9 @@ const QuestionCard = ({ question, onAnswer, userAnswer, showFeedback }) => {
                   value={option}
                   checked={userAnswer === option}
                   onChange={(e) => onAnswer(e.target.value)}
-                  className="w-4 h-4 text-blue-600"
+                  className="radio-input"
                 />
-                <span className="ml-3">{option}</span>
+                <span className="option-text">{option}</span>
               </label>
             ))}
           </div>
@@ -26,11 +27,11 @@ const QuestionCard = ({ question, onAnswer, userAnswer, showFeedback }) => {
 
       case 'true-false':
         return (
-          <div className="flex space-x-4">
+          <div className="true-false-container">
             {['true', 'false'].map((option) => (
               <label
                 key={option}
-                className="flex-1 flex items-center justify-center p-3 border rounded-lg hover:bg-gray-50 cursor-pointer"
+                className="true-false-label"
               >
                 <input
                   type="radio"
@@ -38,9 +39,9 @@ const QuestionCard = ({ question, onAnswer, userAnswer, showFeedback }) => {
                   value={option}
                   checked={userAnswer === option}
                   onChange={(e) => onAnswer(e.target.value)}
-                  className="w-4 h-4 text-blue-600"
+                  className="radio-input"
                 />
-                <span className="ml-2 capitalize">{option}</span>
+                <span className="option-text capitalize">{option}</span>
               </label>
             ))}
           </div>
@@ -52,7 +53,7 @@ const QuestionCard = ({ question, onAnswer, userAnswer, showFeedback }) => {
             type="text"
             value={userAnswer}
             onChange={(e) => onAnswer(e.target.value)}
-            className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            className="text-input"
             placeholder="Type your answer..."
           />
         );
@@ -60,12 +61,14 @@ const QuestionCard = ({ question, onAnswer, userAnswer, showFeedback }) => {
   };
 
   return (
-    <div className="bg-white rounded-xl shadow-lg p-6">
-      <div className="mb-6">
-        <h3 className="text-lg font-semibold text-gray-800 mb-2">
+    <div className="question-card">
+      <div className="question-content">
+        <h3 className="question-text">
           {question.question}
         </h3>
-        <div className="mt-4">{renderAnswerOptions()}</div>
+        <div className="answer-section">
+          {renderAnswerOptions()}
+        </div>
       </div>
     </div>
   );
