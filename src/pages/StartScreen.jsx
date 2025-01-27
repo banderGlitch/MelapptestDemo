@@ -1,13 +1,14 @@
 import { useQuiz } from '../context/QuizContext';
 import Button from '../components/ui/Button';
 import questions from '../data/questions.json';
+import { shuffleQuestions } from '../lib/shuffleQuestion';
 
 export default function StartScreen() {
   const { dispatch } = useQuiz();
 
   const handleStart = () => {
     // Shuffle questions here
-    const shuffledQuestions = {...questions}; // Add shuffle logic
+    const shuffledQuestions = shuffleQuestions(questions); // Add shuffle logic
     dispatch({ type: 'START_QUIZ', payload: { shuffledQuestions } });
   };
 

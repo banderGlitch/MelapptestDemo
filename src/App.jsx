@@ -1,4 +1,3 @@
-import { QuizProvider } from './context/QuizContext';
 import { useQuiz } from './context/QuizContext';
 import StartScreen from './pages/StartScreen';
 import QuizScreen from './pages/QuizScreen';
